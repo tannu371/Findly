@@ -1,0 +1,393 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+  color: #606060;
+  /* padding: 14px; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: sans-serif, "Times New Roman", Times, serif;
+}
+
+.grey {
+  color: #212121;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+nav,
+section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Wrapper must be relative */
+.icon-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Overlay circle */
+.icon-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* top:0 right:0 bottom:0 left:0 */
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  transform: scale(0);
+  transition: transform 0.2s ease;
+  z-index: 0;
+}
+
+/* Show overlay on hover */
+.icon-btn:hover::after {
+  transform: scale(1);
+}
+
+/* SVG icon */
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #5f6368;
+  z-index: 1; /* keeps icon above overlay */
+  pointer-events: none; /* prevents hover glitches */
+}
+
+/* Animated Border (Rotating) */
+.avatar {
+  width: 50px;
+  height: 50px;
+  padding: 2.5px; /* Border thickness */
+  border-radius: 50%;
+  background: conic-gradient(
+    #4285f4 0deg 90deg,
+    /* Blue */ #db4437 90deg 180deg,
+    /* Red */ #f4b400 180deg 270deg,
+    /* Yellow */ #0f9d58 270deg 360deg /* Green */
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: spin 2s linear infinite;
+}
+
+/* Image inside */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: white;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hover Effect Version */
+.avatar {
+  transition: transform 0.2s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+a {
+  text-decoration: unset;
+  font-size: 0.8em;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 14px;
+}
+
+.headerText {
+  font-size: 4em;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Logo container */
+.logo {
+  font-size: 90px;
+  font-weight: bold;
+  letter-spacing: -4px;
+}
+
+/* Base animation */
+.logo span {
+  display: inline-block;
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* Google colors */
+#l1 {
+  color: #4285f4;
+}
+#l2 {
+  color: #db4437;
+  animation-delay: 0.1s;
+}
+#l3 {
+  color: #f4b400;
+  animation-delay: 0.2s;
+}
+#l4 {
+  color: #4285f4;
+  animation-delay: 0.3s;
+}
+#l5 {
+  color: #0f9d58;
+  animation-delay: 0.4s;
+}
+#l6 {
+  color: #db4437;
+  animation-delay: 0.5s;
+}
+#l7 {
+  color: #4285f4;
+  animation-delay: 0.6s;
+}
+
+/* Animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Search bar container */
+.searchBar {
+  display: flex;
+  width: 100%;
+  height: 45px;
+  max-width: 700px;
+  margin: 0 auto;
+  gap: 14px;
+  border: 1px solid #dfe1e5;
+  padding: 14px;
+  border-radius: 24px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover and focus effect */
+.searchBar:hover,
+.searchBar:focus-within {
+  border-color: transparent;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28),
+    0 2px 8px rgba(181, 36, 11, 0.15);
+}
+
+/* Input field */
+.searchBar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex: 1;
+}
+
+.searchBar > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px; /* Adjust this to match Google's spacing */
+  color: black; /* Standard Google icon color */
+}
+
+.iconButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconButton {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Wrapper */
+#icon-wrap {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex; /* Use inline-flex to ensure it respects width/height */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer !important; /* Force the pointer */
+  text-decoration: none;
+  z-index: 10; /* Ensure it stays above other background elements */
+  overflow: visible; /* Changed from hidden to see if the border is clipping */
+  background-color: transparent;
+}
+
+/* Animated Background */
+#icon-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #8ab1ef, #ed6e62, #f4b400, #51efa3);
+  background-size: 300% 300%;
+  animation: gradientMove 3s ease infinite;
+  z-index: -1; /* Move behind the icon */
+  pointer-events: none; /* Crucial: mouse ignores this layer */
+}
+
+/* Icon */
+.ai-mode {
+  width: 30px;
+  height: 30px;
+  display: block;
+  fill: #000000; /* Ensure you can see it */
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Stop background animation on hover */
+#icon-wrap:hover::before {
+  animation-play-state: paused;
+  background: white;
+}
+
+/* Border Ring */
+#icon-wrap::after {
+  content: "";
+  position: absolute;
+  inset: -2px; /* Pull it slightly outward */
+  border-radius: 50%;
+  padding: 2px;
+  background: conic-gradient(#4285f4, #db4437, #f4b400, #0f9d58, #4285f4);
+  -webkit-mask: radial-gradient(circle, transparent 65%, black 67%);
+  mask: radial-gradient(circle, transparent 65%, black 67%);
+  opacity: 0;
+  z-index: 6;
+  pointer-events: none; /* Crucial: mouse ignores this layer */
+  transition: opacity 0.2s ease;
+}
+
+#icon-wrap:hover::after {
+  opacity: 1;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.searchButtonsContainer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.searchButtonsContainer button {
+  padding: 10px 14px;
+  border-radius: 4px;
+  background: #f8f9fa;
+  border: 1px solid transparent;
+  color: rgb(113, 111, 111);
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover and focus effect */
+.searchButtonsContainer button:hover,
+.searchButtonsContainer:focus-within {
+  border: 1px solid grey;
+  box-shadow: 0 1px 2px rgba(128, 136, 161, 0.28),
+    0 1px 2px rgba(199, 185, 183, 0.15);
+}
+
+.languageSelection {
+  font-size: 0.9em;
+}
+
+.languageSelection span {
+  color: cyan;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+}
+
+footer > section {
+  padding: 14px;
+}
+
+footer > section:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid darkgray;
+}
+
+.footerLink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footerLink a {
+  cursor: pointer;
+}
+
+@media (min-width: 540px) {
+  footer > section:last-child {
+    flex-direction: row;
+  }
+}
